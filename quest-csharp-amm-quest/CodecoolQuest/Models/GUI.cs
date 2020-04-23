@@ -24,7 +24,8 @@ namespace Codecool.Quest.Models
         public static bool MousesButton(Rectangle rect, string text)
         {
             var state = Mouse.GetState();
-            var color = Color.White;
+            var color = Color.Blue;
+            var txtColor = Color.White;
 
             if (rect.Contains(state.X, state.Y))
             {
@@ -34,10 +35,11 @@ namespace Codecool.Quest.Models
             }
 
             CodecoolQuestGame.GameSingleton.SpriteBatch.Draw(_button, rect, color);
-            Text(new Vector2(rect.X, rect.Y), text, color);
+            Text(new Vector2(rect.X + 5, rect.Y +5 ), text, txtColor);
 
             return false;
         }
+
 
         /// <summary>
         /// Draws given text

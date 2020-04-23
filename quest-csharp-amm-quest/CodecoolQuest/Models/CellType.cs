@@ -5,5 +5,13 @@
         Empty,
         Floor,
         Wall,
+        CornerLeft,
+        UpperFrame,
+        CornerRight,
+        LeftSide,
+        RightSide,
+        DownRightCorn,
+        DownFrame,
+        LeftDownCorn
     }
 }

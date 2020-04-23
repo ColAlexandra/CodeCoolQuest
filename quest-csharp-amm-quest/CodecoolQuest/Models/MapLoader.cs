@@ -48,7 +48,7 @@ namespace Codecool.Quest.Models
                             case 's':
                             {
                                 cell.CellType = CellType.Floor;
-                                new Skeleton(cell);
+                                map.Skeleton = new Skeleton(cell);
                                 break;
                             }
                             case '@':
@@ -60,29 +60,65 @@ namespace Codecool.Quest.Models
                             case 'k':
                             {
                                 cell.CellType = CellType.Floor;
-                                new Key(cell);
+                                map.Key = new Key(cell);
                                 break;
                             }
                             case 'w':
                             {
                                 cell.CellType = CellType.Floor;
-                                new Sword(cell);
+                                map.Sword = new Sword(cell);
                                 break;
                             }
-                            case 'x':
+
+                            case 'a':
                             {
-                                cell.CellType = CellType.Empty;
-                                new Button(cell);
+                                cell.CellType = CellType.CornerLeft;
                                 break;
 
                             }
-                            case 't':
+                            case 'b':
                             {
-                                cell.CellType = CellType.Empty;
-                                new Button(cell);
+                                cell.CellType = CellType.UpperFrame;
                                 break;
 
                             }
+                            case 'c':
+                            {
+                                cell.CellType = CellType.CornerRight;
+                                break;
+
+                            }
+                            case 'd':
+                            {
+                                cell.CellType = CellType.RightSide;
+                                break;
+
+                            }
+                            case 'h':
+                            {
+                                cell.CellType = CellType.LeftSide;
+                                break;
+
+                            }
+                            case 'e':
+                            {
+                                cell.CellType = CellType.LeftDownCorn;
+                                break;
+
+                            }
+                            case 'g':
+                            {
+                                cell.CellType = CellType.DownRightCorn;
+                                break;
+
+                            }
+                            case 'f':
+                            {
+                                cell.CellType = CellType.DownFrame;
+                                break;
+
+                            }
+
                         }
                     }
                 }

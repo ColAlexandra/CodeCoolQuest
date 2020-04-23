@@ -13,9 +13,8 @@ namespace Codecool.Quest.Models.ItemsCollection
 
         public abstract string TileName { get; }
 
-
         protected Items(Cell cell)
-        {
+        { 
             Cell = cell;
             Cell.Items = this;
         }

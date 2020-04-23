@@ -13,7 +13,6 @@ namespace Codecool.Quest.Models.Actors
 
         public abstract string TileName { get; }
 
-        public bool Passable => Health < 0;
         protected Actor(Cell cell)
         {
             Cell = cell;
@@ -23,13 +22,12 @@ namespace Codecool.Quest.Models.Actors
         public void Move(int dx, int dy)
         {
             var nextCell = Cell.GetNeighbor(dx, dy);
-            if (nextCell.Passable())
-            {
-                Cell.Actor = null;
-                //this = actor na ktorym wywołujemy metode move 
-                nextCell.Actor = this;
-                Cell = nextCell;
-            }
+
+            Cell.Actor = null;
+            //this = actor na ktorym wywołujemy metode move 
+            nextCell.Actor = this;
+            Cell = nextCell;
+
         }
 
     }

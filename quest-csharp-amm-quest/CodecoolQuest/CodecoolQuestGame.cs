@@ -21,6 +21,8 @@ namespace Codecool.Quest
 
         public const double MoveInterval = 0.1;
 
+        public Cell Cells;
+
         public CodecoolQuestGame()
         {
             GameSingleton = this;
@@ -46,14 +48,14 @@ namespace Codecool.Quest
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-            
+
             GUI.Load();
             Tiles.Load();
 
             _map = MapLoader.LoadMap();
         }
 
-        
+
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -75,32 +77,100 @@ namespace Codecool.Quest
 
             if (deltaTime.TotalSeconds < MoveInterval)
                 return;
-            
+
             if (keyboardState.IsKeyDown(Keys.Left))
             {
                 // Move left
-                _map.Player.Move(-1, 0);
+                var neighborCell = _map.Player.Cell.GetNeighbor(-1, 0);
+                if (neighborCell.CellTakenByActor() && neighborCell.CellTakenByItem())
+                {
+                    _map.Player.MovePlayer(MoveDirection.Left);
+                }
+                else
+                {
+                    var cellFreed = _map.Player.ActorFight(neighborCell);
+                    var cellCollected = _map.Player.ActorCollectItem(neighborCell);
+                    if (cellFreed)
+                    {
+                        _map.Player.MovePlayer(MoveDirection.Left);
+                    }
+                    else if (cellCollected)
+                    {
+                        _map.Player.MovePlayer(MoveDirection.Left);
+                    }
+                }
                 _lastMoveTime = gameTime.TotalGameTime;
             }
             else if (keyboardState.IsKeyDown(Keys.Right))
             {
                 // Move right
-                _map.Player.Move(1, 0);
+                var neighborCell = _map.Player.Cell.GetNeighbor(1, 0);
+                if (neighborCell.CellTakenByActor())
+                {
+                    _map.Player.MovePlayer(MoveDirection.Right);
+                }
+                else
+                {
+                    var cellFreed = _map.Player.ActorFight(neighborCell);
+                    var cellCollected = _map.Player.ActorCollectItem(neighborCell);
+                    if (cellFreed)
+                    {
+                        _map.Player.MovePlayer(MoveDirection.Right);
+                    }
+                    else if (cellCollected)
+                    {
+                        _map.Player.MovePlayer(MoveDirection.Right);
+                    }
+                }
                 _lastMoveTime = gameTime.TotalGameTime;
             }
             else if (keyboardState.IsKeyDown(Keys.Up))
             {
                 // Move up
-                _map.Player.Move(0, -1);
+                var neighborCell = _map.Player.Cell.GetNeighbor(0, -1);
+                if (neighborCell.CellTakenByActor())
+                {
+                    _map.Player.MovePlayer(MoveDirection.Up);
+                }
+                else
+                {
+                    var cellFreed = _map.Player.ActorFight(neighborCell);
+                    var cellCollected = _map.Player.ActorCollectItem(neighborCell);
+                    if (cellFreed)
+                    {
+                        _map.Player.MovePlayer(MoveDirection.Up);
+                    }
+                    else if (cellCollected)
+                    {
+                        _map.Player.MovePlayer(MoveDirection.Up);
+                    }
+                }
                 _lastMoveTime = gameTime.TotalGameTime;
             }
             else if (keyboardState.IsKeyDown(Keys.Down))
             {
                 // Move down
-                _map.Player.Move(0, 1);
+                var neighborCell = _map.Player.Cell.GetNeighbor(0, 1);
+                if (neighborCell.CellTakenByActor())
+                {
+                    _map.Player.MovePlayer(MoveDirection.Down);
+                }
+                else
+                {
+                    var cellFreed = _map.Player.ActorFight(neighborCell);
+                    var cellCollected = _map.Player.ActorCollectItem(neighborCell);
+                    if (cellFreed)
+                    {
+                        _map.Player.MovePlayer(MoveDirection.Down);
+                    }
+                    else if (cellCollected)
+                    {
+                        _map.Player.MovePlayer(MoveDirection.Down);
+                    }
+                }
                 _lastMoveTime = gameTime.TotalGameTime;
             }
-           
+
             base.Update(gameTime);
         }
 
@@ -119,6 +189,7 @@ namespace Codecool.Quest
                 for (var y = 0; y < _map.Height; y++)
                 {
                     var cell = _map.GetCell(x, y);
+
                     //tutaj dziad rysuje 
                     if (cell.Actor != null)
                     {
@@ -128,10 +199,6 @@ namespace Codecool.Quest
                     {
                         Tiles.DrawTile(SpriteBatch, cell.Items, x, y);
                     }
-                    else if (cell.Button != null)
-                    {
-                        Tiles.DrawTile(SpriteBatch, cell.Button, x, y);
-                    }
                     else
                     {
                         Tiles.DrawTile(SpriteBatch, cell, x, y);
@@ -140,9 +207,31 @@ namespace Codecool.Quest
                 }
             }
 
+            //tu button
+
+            //GUI.MousesButton(new Rectangle(870, 30, 60, 30), "Pick up");
+            ShowCollectedItems(_map, 900, 125, 25);
+
             SpriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        private static void ShowCollectedItems(GameMap map, int width, int height, int spaceBetweenWords)
+        {
+            var player = map.Player;
+
+            if (player.HasSword)
+            {
+                GUI.Text(new Vector2(width, height), "sword".ToUpperInvariant(), Color.Gray);
+            }
+
+            if (player.HasKey)
+            {
+                GUI.Text(new Vector2(width, height + spaceBetweenWords), "Key".ToUpperInvariant(), Color.Yellow);
+            }
+
+
         }
     }
 }

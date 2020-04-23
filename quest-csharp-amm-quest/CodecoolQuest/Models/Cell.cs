@@ -1,7 +1,5 @@
-﻿using System;
-using Codecool.Quest.Models.Actors;
+﻿using Codecool.Quest.Models.Actors;
 using Codecool.Quest.Models.ItemsCollection;
-using Codecool.Quest.Models;
 
 namespace Codecool.Quest.Models
 {
@@ -10,8 +8,6 @@ namespace Codecool.Quest.Models
         public Actor Actor { get; set; }
 
         public Items Items { get; set; }
-
-        public Button Button { get; set; }
 
         public CellType CellType { get; set; }
 
@@ -22,22 +18,9 @@ namespace Codecool.Quest.Models
 
         private readonly GameMap _gameMap;
 
-        public bool Passable()
-        {
-            if(CellType != CellType.Wall)
-            {
-                if (this.Actor != null)
-                {
-                    return this.Actor.Health < 0;
-                }
-                else
-                {
-                    return true;
-                }
-                
-            }
-            return false;
-        }
+       
+
+
         public Cell(GameMap gameMap, int x, int y, CellType cellType)
         {
             _gameMap = gameMap;
@@ -47,11 +30,30 @@ namespace Codecool.Quest.Models
 
 
         }
-        
 
         public Cell GetNeighbor(int dx, int dy)
         {
             return _gameMap.GetCell(X + dx, Y + dy) ?? this;
+        }
+
+        public bool CellTakenByActor()
+        {
+            return this.Actor == null && this.CellType == CellType.Floor;
+        }
+
+        public bool CellTakenByItem()
+        {
+            return this.Items == null && this.CellType == CellType.Floor; 
+        }
+
+        public Actor ActorInCell()
+        {
+            return this.Actor;
+        }
+
+        public Items ItemInCell()
+        {
+            return this.Items;
         }
     }
 }

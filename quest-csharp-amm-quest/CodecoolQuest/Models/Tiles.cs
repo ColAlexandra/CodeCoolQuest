@@ -24,7 +24,15 @@ namespace Codecool.Quest.Models
                 {"skeleton", new Tile(29, 6)},
                 {"key", new Tile(16, 23) },
                 {"sword", new Tile(0, 24)},
-                {"button", new Tile(29, 15)}
+                {"cornerleft", new Tile(16, 19)},
+                {"upperframe", new Tile(17, 19)},
+                {"cornerright", new Tile(18, 19)},
+                {"leftside" , new Tile(16, 20)},
+                {"rightside", new Tile(18, 20) },
+                {"downrightcorn", new Tile(16,21) },
+                {"downframe", new Tile(17, 21) },
+                {"leftdowncorn", new Tile(18, 21) }
+
             };
 
         }

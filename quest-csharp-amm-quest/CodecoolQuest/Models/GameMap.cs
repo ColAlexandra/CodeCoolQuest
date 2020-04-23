@@ -1,4 +1,5 @@
 ﻿using Codecool.Quest.Models.Actors;
+using Codecool.Quest.Models.ItemsCollection;
 
 namespace Codecool.Quest.Models
 {
@@ -6,8 +7,16 @@ namespace Codecool.Quest.Models
     {
         public int Height { get; }
         public int Width { get; }
+
         private readonly Cell[,] _cells;
         public Player Player { get; set; }
+
+        public Skeleton Skeleton { get; set; }
+
+        public Key Key { get; set; }
+
+        public Sword Sword { get; set; }
+
 
         public GameMap(int width, int height, CellType defaultCellType)
         {
