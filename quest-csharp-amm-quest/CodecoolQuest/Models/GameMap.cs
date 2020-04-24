@@ -17,6 +17,8 @@ namespace Codecool.Quest.Models
 
         public Sword Sword { get; set; }
 
+        public Door Door { get; set; }
+
 
         public GameMap(int width, int height, CellType defaultCellType)
         {

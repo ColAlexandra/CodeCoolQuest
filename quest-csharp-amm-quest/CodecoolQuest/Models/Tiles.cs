@@ -31,7 +31,8 @@ namespace Codecool.Quest.Models
                 {"rightside", new Tile(18, 20) },
                 {"downrightcorn", new Tile(16,21) },
                 {"downframe", new Tile(17, 21) },
-                {"leftdowncorn", new Tile(18, 21) }
+                {"leftdowncorn", new Tile(18, 21) },
+                {"door", new Tile(3, 3) }
 
             };
 

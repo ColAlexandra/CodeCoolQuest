@@ -118,6 +118,13 @@ namespace Codecool.Quest.Models
                                 break;
 
                             }
+                            case 'i':
+                            {
+                                cell.CellType = CellType.Floor;
+                                map.Door = new Door(cell);
+                                break;
+
+                            }
 
                         }
                     }

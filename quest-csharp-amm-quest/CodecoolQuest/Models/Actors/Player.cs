@@ -61,11 +61,15 @@ namespace Codecool.Quest.Models.Actors
 
         private bool HandleActors(Actor actor, Cell cell)
         {
-            return actor.TileName switch
+            if (actor.TileName == "skeleton")
             {
-                "skeleton" => Fight(actor, cell),
-                _ => false,
-            };
+                Fight(actor, cell);
+            }
+            else if(HasKey == true)
+            {
+                OpenTheDoor(cell);
+            }
+            return false;
         }
 
         private bool HandleItems(Items items, Cell cell)
@@ -111,6 +115,12 @@ namespace Codecool.Quest.Models.Actors
             }
 
         }
+
+        private void OpenTheDoor(Cell cell)
+        {
+            cell.Actor = null;
+        }
+
 
         private static bool LifeOrDead(Actor actor, Cell cell)
         {
