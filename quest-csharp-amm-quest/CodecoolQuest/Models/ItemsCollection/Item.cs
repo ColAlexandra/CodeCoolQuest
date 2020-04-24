@@ -2,7 +2,7 @@
 
 namespace Codecool.Quest.Models.ItemsCollection
 {
-    public abstract class Items : IDrawable
+    public abstract class Item : IDrawable
     {
         public Cell Cell { get; private set; }
         public int Bonus { get; set; }
@@ -13,7 +13,7 @@ namespace Codecool.Quest.Models.ItemsCollection
 
         public abstract string TileName { get; }
 
-        protected Items(Cell cell)
+        protected Item(Cell cell)
         { 
             Cell = cell;
             Cell.Items = this;

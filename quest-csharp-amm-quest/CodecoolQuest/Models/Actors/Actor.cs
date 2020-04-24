@@ -4,6 +4,9 @@ namespace Codecool.Quest.Models.Actors
 {
     public abstract class Actor : IDrawable
     {
+        //kazdy actor mogl posiadac ekwipunek, lista ekwipunku, kazda z klas wykorzystuje ekwipunek inaczej//jesli szkielet zginie to upusci ekwipunek//zabic szkielet, zeby upuscil
+        //todo: create an inventory of actor
+        //todo: 
         public Cell Cell { get; private set; }
         public int Health { get; set; } = 10;
 

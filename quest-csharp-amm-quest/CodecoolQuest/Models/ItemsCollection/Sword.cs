@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Codecool.Quest.Models.ItemsCollection
 {
-    public class Sword : Items
+    public class Sword : Item
     {
         public override string TileName => "sword";
 

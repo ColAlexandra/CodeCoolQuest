@@ -5,6 +5,8 @@ namespace Codecool.Quest.Models.Actors
     public class Player : Actor
     {
         public override string TileName => "player";
+
+        //przeniesc do class Items Collection i tu wywolac//stworzyc ekwipunek i go przeszukiwac, czy ma czy nie
         public bool HasSword { get; set; }
         public bool HasKey { get; set; }
 
@@ -16,25 +18,8 @@ namespace Codecool.Quest.Models.Actors
 
         public void MovePlayer(MoveDirection move)
         {
-            switch ((int)move)
-            {
-                case 0:
-                    Move(1, 0);
-                    break;
-
-                case 1:
-                    Move(-1, 0);
-                    break;
-
-                case 2:
-                    Move(0, -1);
-                    break;
-
-                case 3:
-                    Move(0, 1);
-                    break;
-
-            }
+            var (x, y) = move.ToVector();
+            Move(x, y);
         }
 
         public bool ActorFight(Cell cell)
@@ -72,7 +57,7 @@ namespace Codecool.Quest.Models.Actors
             return false;
         }
 
-        private bool HandleItems(Items items, Cell cell)
+        private bool HandleItems(Item items, Cell cell)
         {
             return items.TileName switch
             {

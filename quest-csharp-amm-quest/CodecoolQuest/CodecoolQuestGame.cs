@@ -208,7 +208,7 @@ namespace Codecool.Quest
             }
 
             //tu button
-
+            GUI.Text(new Vector2(890, 50 + 25), "Inventory".ToUpperInvariant(), Color.WhiteSmoke);
             //GUI.MousesButton(new Rectangle(870, 30, 60, 30), "Pick up");
             ShowCollectedItems(_map, 900, 125, 25);
 

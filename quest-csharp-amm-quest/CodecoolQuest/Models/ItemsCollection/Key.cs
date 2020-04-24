@@ -1,6 +1,6 @@
 ﻿namespace Codecool.Quest.Models.ItemsCollection
 {
-    public class Key : Items
+    public class Key : Item
     {
         public override string TileName => "key";
 

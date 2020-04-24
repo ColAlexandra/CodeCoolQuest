@@ -5,9 +5,11 @@ namespace Codecool.Quest.Models
 {
     public class Cell : IDrawable
     {
+        //todo: add properties to neighbour: up, down, ect.
+        //todo: add method retun neighboor after recivin move direction
         public Actor Actor { get; set; }
 
-        public Items Items { get; set; }
+        public Item Items { get; set; }
 
         public CellType CellType { get; set; }
 
@@ -51,7 +53,7 @@ namespace Codecool.Quest.Models
             return this.Actor;
         }
 
-        public Items ItemInCell()
+        public Item ItemInCell()
         {
             return this.Items;
         }
