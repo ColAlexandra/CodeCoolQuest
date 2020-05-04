@@ -105,7 +105,7 @@ namespace Codecool.Quest
             {
                 // Move right
                 var neighborCell = _map.Player.Cell.GetNeighbor(1, 0);
-                if (neighborCell.CellTakenByActor())
+                if (neighborCell.CellTakenByActor() && neighborCell.CellTakenByItem())
                 {
                     _map.Player.MovePlayer(MoveDirection.Right);
                 }
@@ -128,7 +128,7 @@ namespace Codecool.Quest
             {
                 // Move up
                 var neighborCell = _map.Player.Cell.GetNeighbor(0, -1);
-                if (neighborCell.CellTakenByActor())
+                if (neighborCell.CellTakenByActor() && neighborCell.CellTakenByItem())
                 {
                     _map.Player.MovePlayer(MoveDirection.Up);
                 }
@@ -151,7 +151,7 @@ namespace Codecool.Quest
             {
                 // Move down
                 var neighborCell = _map.Player.Cell.GetNeighbor(0, 1);
-                if (neighborCell.CellTakenByActor())
+                if (neighborCell.CellTakenByActor() && neighborCell.CellTakenByItem())
                 {
                     _map.Player.MovePlayer(MoveDirection.Down);
                 }
